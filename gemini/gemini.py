@@ -8,6 +8,8 @@ genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 model = genai.GenerativeModel("gemini-3-flash-preview")
 
+chat = model.start_chat(history=[])
+
 print ("--- 🚀 Gemini Dynamic Chat (Type 'bye' to quit) ---")
 
 while True: 
@@ -18,7 +20,7 @@ while True:
         print("Gemini: Goodbye! Happy coding!")
         break
     try:
-        response = model.generate_content(prompt)
+        response = chat.send_message(prompt)
         print(f"Gemini: {response.text}\n")
     except Exception as e:
         print(f"⚠️ Error: {e}")
